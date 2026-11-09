@@ -1,0 +1,20 @@
+#login {
+  width: 300px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}

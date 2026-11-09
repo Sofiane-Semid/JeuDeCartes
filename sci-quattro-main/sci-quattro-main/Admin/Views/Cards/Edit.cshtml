@@ -1,0 +1,92 @@
+﻿@model Super_Cartes_Infinies.ViewModels.CardEditViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Modifier</h1>
+
+<h4>Carte</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Card.Id" />
+            <div class="form-group">
+                <label asp-for="Card.Name" class="control-label"></label>
+                <input asp-for="Card.Name" class="form-control" />
+                <span asp-validation-for="Card.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.Attack" class="control-label"></label>
+                <input asp-for="Card.Attack" class="form-control" />
+                <span asp-validation-for="Card.Attack" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.Health" class="control-label"></label>
+                <input asp-for="Card.Health" class="form-control" />
+                <span asp-validation-for="Card.Health" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.Cost" class="control-label"></label>
+                <input asp-for="Card.Cost" class="form-control" />
+                <span asp-validation-for="Card.Cost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.ImageUrl" class="control-label"></label>
+                <input asp-for="Card.ImageUrl" class="form-control" />
+                <span asp-validation-for="Card.ImageUrl" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                <label asp-for="Card.rarete" class="control-label"></label>
+                <select asp-for="Card.rarete" class="form-control"
+                        asp-items="Html.GetEnumSelectList<Rarete>()">
+                </select>
+                <span asp-validation-for="Card.rarete" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+        
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sauvegarder" class="btn btn-primary" />
+            </div>
+        </form>
+        <h4>Powers</h4>
+        <hr />
+         
+        <div class="row">
+             @foreach(var power in Model.Card.CardPowers)
+            {
+                <form asp-action="DeletePower">
+                    <div class="row">@power.Power.Name @power.Value <input type="submit" value="X" class="btn btn-danger" /></div>
+                    <input type="hidden" value="@power.Id" name="CardPowerId"/>
+                </form>
+                    
+            }
+            <form asp-action="EditPowers">
+           <div class="form-group">
+               <input type="hidden" name="CardId" value="@Model.Card.Id"/>
+               
+               
+               <label asp-for="powers"></label>
+            <select name="PowerId" class="form-control" asp-items="@(new SelectList(Model.powers,"Id","Name"))">
+                
+            </select>
+            <label name="Value" for="Value">Value</label>
+            <input name="Value" class="form-control" id="Value"/>
+            <input type="submit" value="Sauvegarder" class="btn btn-primary"/>
+           </div>
+            </form>
+            </div>
+                
+        
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retourner à la liste</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

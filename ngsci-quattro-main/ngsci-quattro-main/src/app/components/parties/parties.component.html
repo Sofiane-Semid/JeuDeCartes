@@ -1,0 +1,47 @@
+<div class="parties-container">
+
+    <h1>Parties</h1>
+
+    @if(matches.length == 0)
+    {
+    <p>Aucune partie active</p>
+    }
+
+    @else
+    {
+    <table>
+
+        <tr>
+            <th>Joueur A</th>
+            <th>Joueur B</th>
+            <th>Action</th>
+        </tr>
+
+        @for(match of matches; track match)
+        {
+        <tr>
+
+            <td>{{match.playerAName}}</td>
+            <td>{{match.playerBName}}</td>
+
+            <td>
+
+              @if(
+match.playerAName != currentUserName &&
+match.playerBName != currentUserName
+)
+                {
+                <button class="watch-btn" (click)="watchMatch(match.id)">
+                    Regarder
+                </button>
+                }
+
+            </td>
+
+        </tr>
+        }
+
+    </table>
+    }
+
+</div>

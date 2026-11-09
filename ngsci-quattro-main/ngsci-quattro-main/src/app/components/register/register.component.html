@@ -1,0 +1,72 @@
+<form [formGroup]="formGroup" (ngSubmit)="register()">
+
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      placeholder="Nom d'utilisateur"
+      formControlName="username"
+    />
+    @if (formGroup.get('username')?.hasError('required')) {
+      <mat-error> Le nom est <strong>requis</strong> </mat-error>
+    }
+     @if (formGroup.get('username')?.hasError('serverError')) {
+  <mat-error>
+    {{ formGroup.get('username')?.getError('serverError') }}
+  </mat-error>
+}
+  
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      type="email"
+      placeholder="Courriel"
+      formControlName="email"
+    />
+    @if (formGroup.get('email')?.hasError('email') && !formGroup.get('email')?.hasError('required')) {
+      <mat-error> Entrez une adresse courriel valide </mat-error>
+    }
+    @if (formGroup.get('email')?.hasError('required')) {
+      <mat-error> Le courriel est <strong>requis</strong> </mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      type="password"
+      placeholder="Mot de passe"
+      formControlName="password"
+    />
+    @if (formGroup.get('password')?.hasError('required')) {
+      <mat-error> Le mot de passe est <strong>requis</strong> </mat-error>
+    }
+    @if (formGroup.get('password')?.hasError('minlength')) {
+      <mat-error> Minimum 8 caractères </mat-error>
+    }
+  </mat-form-field>
+
+<mat-form-field>
+  <input
+    matInput
+    type="password"
+    placeholder="Confirmer le mot de passe"
+    formControlName="passwordConfirm"
+  />
+
+  @if (formGroup.hasError('passwordMismatch') && formGroup.get('passwordConfirm')?.touched) {
+    <mat-error> Les mots de passe ne correspondent pas </mat-error>
+  }
+</mat-form-field>
+
+  <button mat-raised-button color="primary" [disabled]="!formGroup.valid">
+    S'inscrire
+  </button>
+
+  <div *ngIf="errorMessage" style="color:red; margin-top:10px;">
+    {{ errorMessage }}
+  </div>
+
+</form>

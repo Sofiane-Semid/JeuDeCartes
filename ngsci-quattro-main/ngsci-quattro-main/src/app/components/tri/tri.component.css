@@ -1,0 +1,40 @@
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+.tri-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap; /* pour que ça reste propre sur mobile */
+  margin-bottom: 1.5rem;
+}
+
+.tri-header h4 {
+  margin: 0;
+}
+
+.tri-header select {
+  appearance: none; /* enlève le style natif */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Effet au focus */
+.tri-header select:focus {
+  outline: none;
+  border-color: #4c8bf5;
+  box-shadow: 0 0 0 2px rgba(76, 139, 245, 0.2);
+}

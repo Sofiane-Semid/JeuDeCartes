@@ -1,0 +1,88 @@
+<form (ngSubmit)="createDeck()" #deckForm="ngForm" style="max-width: 400px;">
+
+  <!-- Nom du deck -->
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Nom du deck</mat-label>
+    <input
+      matInput
+      name="deckName"
+      [(ngModel)]="deckName"
+      required
+      placeholder="Entrez un nom de deck"
+    />
+  </mat-form-field>
+
+  <!-- Bouton créer -->
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!deckForm.valid"
+    style="margin-top: 10px; width: 100%;"
+  >
+    Créer un nouveau Deck
+  </button>
+
+  <!-- Dropdown choix du deck -->
+  <mat-form-field appearance="fill" style="width: 100%; margin-top: 20px;">
+    <mat-label>Choisir un deck</mat-label>
+    <mat-select [(ngModel)]="selectedDeckId" name="selectedDeck" (selectionChange)="onDeckChange()">
+      <mat-option *ngFor="let deck of decks" [value]="deck.id">
+        {{ deck.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Boutons actions -->
+  <div style="display: flex; gap: 10px; margin-top: 15px;">
+    <button *ngIf="selectedDeckId != currentDeckId"
+      mat-raised-button
+      color="warn"
+      type="button"
+      (click)="deleteDeck()"
+      [disabled]="!selectedDeckId"
+    >
+      Effacer le Deck
+    </button>
+    
+    <button *ngIf="selectedDeckId != currentDeckId"
+      mat-raised-button
+      color="accent"
+      type="button"
+      (click)="setCurrentDeck()"
+      [disabled]="!selectedDeckId"
+    >
+      Choisir comme deck courant
+    </button>
+  </div>
+
+  <p *ngIf="selectedDeckId === currentDeckId">
+      C'est le deck courant
+  </p>
+
+  <!-- Dropdown choix de cartes à ajouter -->
+    <mat-form-field appearance="fill" style="width: 100%; margin-top: 20px;">
+      <mat-label>Choisir une carte</mat-label>
+      <mat-select
+        [(ngModel)]="selectedCardId"
+        name="selectedCard"
+        (selectionChange)="onCardSelected()"
+      >
+        <mat-option *ngFor="let card of getCartesDisponibles()" [value]="card.id">
+          {{ card.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+</form>
+
+<div class="cards-container">
+    <div *ngFor="let carte of cartesSelectionnes" class="card-item">
+      <app-card [card]="carte"></app-card>
+
+      <button mat-button color="warn" (click)="retirerCarte(carte)">
+        Retirer
+      </button>
+    </div>
+  </div>

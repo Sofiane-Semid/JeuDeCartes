@@ -1,0 +1,18 @@
+@if (matchService.match == null) {
+<mat-toolbar style="display: flex;">
+  <mat-icon style="margin-right: 8px" routerLink="/">class</mat-icon>
+  <a routerLink="/home"><span>Super Cartes Infinies</span></a>
+  <span style="flex: 1 1 auto;"></span>
+  @if (isLogged()) {
+    <div class="coins-container">💰 {{ coins }} | 🏆 ELO : {{ elo }} </div>
+  <mat-chip style="margin-right: 20px;">
+    {{getUsername()}}
+  </mat-chip>
+  }
+  <a routerLink="event-debugger" mat-mini-fab color="accent"><mat-icon>bug_report</mat-icon></a>
+  @if (isLogged()) {
+  <button mat-raised-button color="warn" (click)="logout()">Se déconnecter</button>
+  }
+</mat-toolbar>
+}
+<router-outlet></router-outlet>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Models.Models.Configurations>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Configurations</h1>
+
+<p>
+    <a asp-action="Create">Créer une configuration</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NbCardsApiger)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManaParTour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxDeckParJoueur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxCartesParDeck)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NbCardsApiger)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManaParTour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxDeckParJoueur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxCartesParDeck)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,49 @@
+@if (show=='front') {
+  
+
+
+  
+  <mat-card class="infinite-card" [class.shake-horizontal]="animate==true" (click)="myAnimationUse(4)">
+    
+    <mat-card-header>
+      <div mat-card-avatar class="infinite-card-mana-cost">
+        {{card?.cost}} <i class="fas fa-gem"></i>
+      </div>
+     <mat-card-title>
+<div class="titre-carte" [ngClass]="getRareteClass(card?.rarete)">
+  {{powerClass==null ? card?.name : card?.name}}
+  <i class="{{powerClass}}"></i>
+</div>
+</mat-card-title>
+    </mat-card-header>
+   
+    <mat-card-content class="infinite-card-content" style="background-image: url({{card?.imageUrl}});">
+      <table style="font-size: 2em; font-size: 2em; width: fit-content; text-shadow: 2px 2px 2px black;">
+        @for(a of card?.cardPowers; track a; let i= $index){
+          <tr>
+            <td><i class="fa-solid {{a.power.icone}} {{a.power.id}}"  [class.shake-horizontal]="indexVal==i"></i></td>
+            <td>@if(a.value!=0){
+              {{a.value}}
+               
+            }</td>
+          </tr>
+        }
+          
+      
+        <tr>
+          <td><i class="fas fa-fist-raised"></i></td>
+          <td>{{card?.attack}}</td>
+        </tr>
+        <tr>
+          <td><i class="fas fa-shield-alt"></i></td>
+          <td>{{health==0? card?.health: health}}</td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+}
+
+@if (show=='back') {
+  <mat-card  class="infinite-card" style="background-image: url({{beautifulBackUrl}});">
+  </mat-card>
+}

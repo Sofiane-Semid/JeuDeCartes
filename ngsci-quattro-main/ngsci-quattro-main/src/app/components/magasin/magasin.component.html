@@ -1,0 +1,29 @@
+<div class="page-container">
+  <h3>Magasin</h3>
+
+  <div class="packs">
+    <div *ngFor="let pack of packs" class="pack-card">
+      <img [src]="pack.imageUrl" width="150">
+      <h4>{{ pack.nom }}</h4>
+      <p>💰 {{ pack.prix }}</p>
+
+      <button (click)="buyPack(pack.id)">
+        Acheter
+      </button>
+    </div>
+  </div>
+
+
+<div class="overlay" *ngIf="showPackDialog">
+  <div class="dialog">
+    <h2>🎉 Pack ouvert !</h2>
+
+    <div class="cards">
+      <div *ngFor="let card of openedCards">
+        <app-card [card]="card"></app-card>
+      </div>
+    </div>
+
+    <button (click)="closeDialog()">Fermer</button>
+  </div>
+</div>

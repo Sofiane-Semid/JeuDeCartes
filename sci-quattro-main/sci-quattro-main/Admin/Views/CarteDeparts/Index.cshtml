@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Models.Models.CarteDepart>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Cartes de départ</h1>
+
+<p>
+    <a asp-action="Create">Créer une carte de départ</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Carte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carte)
+            </td>
+            <td>
+                    <img src="@item.ImageUrl" alt="@item.Carte" width=200 />
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

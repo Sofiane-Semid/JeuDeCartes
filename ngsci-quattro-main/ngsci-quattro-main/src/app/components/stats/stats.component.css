@@ -1,0 +1,17 @@
+.page-container {
+  margin: 40px;
+}
+
+.charts-row {
+  display: flex;
+  gap: 20px; /* espace entre les graphiques */
+  margin-top: 20px;
+}
+
+.chart-half {
+  flex: 1; /* prend 50% chacun */
+}
+
+.chart-full {
+  margin-top: 20px;
+}

@@ -1,0 +1,92 @@
+.page-container {
+  margin: 40px;
+  text-align: center;
+}
+
+
+.packs {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+.pack-card {
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  width: 180px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.pack-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+
+.pack-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+
+.pack-card h4 {
+  margin: 10px 0 5px;
+}
+
+
+.pack-card p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+.pack-card button {
+  background: linear-gradient(135deg, #4CAF50, #2ecc71);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+
+.pack-card button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #43a047, #27ae60);
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.dialog {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 90%;
+}
+
+
+.cards {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}

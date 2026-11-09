@@ -1,0 +1,42 @@
+<div class="page-container">
+    <!-- input choix de deck ou toutes cartes -->
+    <mat-form-field appearance="fill" style="width: 20%; margin-top: 20px;">
+    <mat-label>Filtrer les statistiques</mat-label>
+    <mat-select [(ngModel)]="selectedDeckId" name="selectedDeck" (selectionChange)="onChange()">
+      <mat-option [value]="-1">
+        Toutes les cartes
+      </mat-option>
+      <mat-option *ngFor="let deck of decks" [value]="deck.id">
+        {{ deck.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+    <h4>Nombre de victoires: <span style="color: green;">{{nbVictoires}}</span></h4>
+    <h4>Nombre de défaites: <span style="color: red;">{{nbDefaites}}</span></h4>
+
+    <div class="charts-row">
+    <div class="chart-half">
+      <canvasjs-chart
+        [options]="CoutMana"
+        [styles]="{width: '100%', height:'360px'}"
+        (chartInstance)="onManaChartInit($event)">
+      </canvasjs-chart>
+    </div>
+
+    <div class="chart-half">
+      <canvasjs-chart
+        [options]="graphiqueRaretes"
+        [styles]="{width: '100%', height:'360px'}"
+        (chartInstance)="onRarityChartInit($event)">
+      </canvasjs-chart>
+    </div>
+  </div>
+
+  <div class="chart-full">
+    <canvasjs-chart
+      [options]="AttaqueDefense"
+      [styles]="{width: '100%', height:'360px'}"
+      (chartInstance)="onAttackDefenseChartInit($event)">
+    </canvasjs-chart>
+  </div>

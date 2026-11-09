@@ -1,0 +1,38 @@
+﻿@model CarteDepart
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Créer</h1>
+
+<h4>CarteDepart</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+
+            <div class="form-group">
+                <label asp-for="Carte"></label>
+
+                <select asp-for="Carte"
+                        class="form-control"
+                        asp-items="@(new SelectList(Model.CartesDisponibles, "Name", "Name"))">
+                    <option value="">@Model.Carte</option>
+                </select>
+
+                <span asp-validation-for="Carte" class="text-danger"></span>
+            </div>
+
+            <input type="submit" value="Créer" class="btn btn-primary" />
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retourner à la liste</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,31 @@
+<div id="login">
+  <div>Connexion</div>
+
+  <form [formGroup]="formGroup" (ngSubmit)="login()">
+
+    <mat-form-field>
+      <input matInput type="text" placeholder="Nom d'utilisateur" formControlName="username" />
+      @if (formGroup.get('username')?.hasError('required') && formGroup.get('username')?.touched) {
+      <mat-error> Le nom d'utilisateur est <strong>requis</strong> </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="password" placeholder="Mot de passe" formControlName="password" />
+      @if (formGroup.get('password')?.hasError('required') && formGroup.get('password')?.touched) {
+      <mat-error> Le mot de passe est <strong>requis</strong> </mat-error>
+      }
+    </mat-form-field>
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+    <button mat-raised-button color="primary" [disabled]="!formGroup.valid">
+      Se connecter
+    </button>
+
+    <button mat-button type="button" (click)="Register()">
+      Créer un compte
+    </button>
+  
+  </form>
+</div>

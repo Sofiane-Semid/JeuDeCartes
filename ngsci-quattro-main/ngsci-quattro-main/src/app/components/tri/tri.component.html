@@ -1,0 +1,23 @@
+<div class="col">
+  <div class="tri-header">
+    <h4>Trier :</h4>
+
+    <select [(ngModel)]="statSelectionne" (ngModelChange)="tri()">
+      <option value="Attack">Attaque</option>
+      <option value="Health">Points de vie</option>
+      <option value="ManaCost">Coût en Mana</option>
+    </select>
+
+    <select [(ngModel)]="ordreSelectionne" (ngModelChange)="tri()">
+      <option value="asc">Croissant</option>
+      <option value="desc">Décroissant</option>
+    </select>
+  </div>
+
+  <div class="cards-container">
+    <app-card
+      *ngFor="let carte of listeTriee"
+      [card]="carte">
+    </app-card>
+  </div>   
+</div>

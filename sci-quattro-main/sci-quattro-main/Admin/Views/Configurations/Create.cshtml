@@ -1,0 +1,63 @@
+﻿@model Models.Models.Configurations
+
+@{
+    ViewData["Title"] = "Modifier";
+}
+
+<h1>Créer</h1>
+
+<h4>Configurations</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NbCardsApiger" class="control-label"></label>
+                <input asp-for="NbCardsApiger" class="form-control" />
+                <span asp-validation-for="NbCardsApiger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ManaParTour" class="control-label"></label>
+                <input asp-for="ManaParTour" class="form-control" />
+                <span asp-validation-for="ManaParTour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxDeckParJoueur" class="control-label"></label>
+                <input asp-for="MaxDeckParJoueur" class="form-control" />
+                <span asp-validation-for="MaxDeckParJoueur" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MaxCartesParDeck" class="control-label"></label>
+                <input asp-for="MaxCartesParDeck" class="form-control" />
+                <span asp-validation-for="MaxCartesParDeck" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoinsOnRegister" class="control-label"></label>
+                <input asp-for="CoinsOnRegister" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CoinsOnWin" class="control-label"></label>
+                <input asp-for="CoinsOnWin" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CoinsOnLose" class="control-label"></label>
+                <input asp-for="CoinsOnLose" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retourner à la liste</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

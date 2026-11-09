@@ -1,0 +1,46 @@
+﻿@model Models.Models.Configurations
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Suprimmer</h1>
+
+<h3>Êtes-vous certain de vouloir supprimer cette carte de départ?</h3>
+<div>
+    <h4>Configurations</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NbCardsApiger)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NbCardsApiger)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ManaParTour)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ManaParTour)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MaxDeckParJoueur)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MaxDeckParJoueur)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MaxCartesParDeck)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MaxCartesParDeck)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Supprimer" class="btn btn-danger" /> |
+        <a asp-action="Index">Retourner à la liste</a>
+    </form>
+</div>

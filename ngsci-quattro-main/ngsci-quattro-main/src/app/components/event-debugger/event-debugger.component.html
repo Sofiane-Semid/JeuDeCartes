@@ -1,0 +1,72 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" opened>
+    <mat-nav-list role="list">
+      <div mat-subheader class="list-header">
+        <h4>Événements</h4>
+        <button mat-icon-button [matMenuTriggerFor]="eventsMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+      @for (event of events(); track event.id) {
+        <mat-list-item
+          (click)="selectedEvent.set(event)"
+          [activated]="selectedEvent()?.id == event.id"
+        >
+          @switch (event.matchEvent.eventType) {
+            @case ("Surrender") {
+              <i matListItemIcon class="fa-solid fa-flag"></i>
+            }
+            @case ("PlayCard") {
+              <i matListItemIcon class="fa-solid fa-address-card"></i>
+            }
+            @case ("StartMatch") {
+              <i matListItemIcon class="fa-solid fa-flag-checkered"></i>
+            }
+            @case ("PlayerEndTurn") {
+              <i matListItemIcon class="fa-solid fa-hourglass-end"></i>
+            }
+          }
+          <div matListItemTitle>{{ event.matchEvent.eventType }}</div>
+          <button
+            matListItemMeta
+            mat-icon-button
+            [matMenuTriggerFor]="eventMenu"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-menu #eventMenu="matMenu">
+          <button mat-menu-item (click)="deleteEvent(event.id)">
+            <mat-icon>delete</mat-icon>
+            <span>Supprimer</span>
+          </button>
+          <button mat-menu-item (click)="exportEvent(event.id)">
+            <mat-icon>download</mat-icon>
+            <span>Exporter</span>
+          </button>
+        </mat-menu>
+      }
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    @if (selectedEvent()) {
+      <app-event-debugger-details
+        [event]="selectedEvent()!"
+      ></app-event-debugger-details>
+    }
+  </mat-drawer-content>
+</mat-drawer-container>
+<mat-menu #eventsMenu="matMenu">
+  <button mat-menu-item (click)="deleteAllEvents()">
+    <mat-icon>clear_all</mat-icon>
+    <span>Supprimer tous</span>
+  </button>
+  <button mat-menu-item (click)="exportEvents()">
+    <mat-icon>download</mat-icon>
+    <span>Exporter tous</span>
+  </button>
+  <button mat-menu-item (click)="importEvents()">
+    <mat-icon>upload</mat-icon>
+    <span>Importer tous</span>
+  </button>
+</mat-menu>

@@ -1,0 +1,27 @@
+<div style="display: flex; margin: 20px; justify-content: center;">
+  <button mat-raised-button color="accent" style="margin-right: 20px;" (click)="versMesCartes()">Mes cartes</button>
+  <button mat-raised-button color="accent" style="margin-right: 20px;" (click)="versMagasin()">Magasin</button>
+  <button mat-raised-button color="accent" style="margin-right: 20px;" (click)="joinMatch(true)">Joindre une partie</button>
+  <button mat-raised-button color="accent" style="margin-right: 20px;" (click)="versDecks()">Decks</button>
+<button mat-raised-button
+        color="accent"
+        style="margin-right: 20px;"
+        (click)="router.navigate(['/home/parties'])">
+
+    Parties
+
+</button>
+  <button mat-raised-button color="accent" style="margin-right: 20px;" (click)="versStats()">Stats</button>
+  
+   <button mat-raised-button type="button" (click)="testToken()">
+      Test Token
+    </button>
+</div>
+
+<div class="overlay" *ngIf="isOpen">
+  <div class="dialog">
+    Recherche d'un adversaire...
+  </div>
+</div>
+<router-outlet></router-outlet>
+
